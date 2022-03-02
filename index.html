@@ -1,19 +1,76 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Curso Angular</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="shortcut icon" href="assets/img/favicon.png">
+  <title>Login Bankinter</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+  <meta name="description" content="Script de ejemplo para logar al usuario de Bankinter">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
-    <h1>TypeScript - ES20XX </h1>
-    <hr>
+  
+	<div class="container mt-3">
+		<h2>Simulación acceso portal</h2>
+		<p>Presione el botón para acceder al portal</p>
+		<button type="button" class="btn btn-primary" id="btnSubmit">Primary</button>
+	</div>
+	
+	<script>
+        var $btnSubmit;
+        $(function() {
+            $btnSubmit = $('#btnSubmit');
 
-    
-    
-    <script src="bundle.js"></script>
+            $btnSubmit.click(function(event) {
+                iniciarSesion(event);
+            });
+
+        });
+
+        function iniciarSesion(event) {
+	/*debugger;
+	 $.ajax({
+    	type: "GET",
+		dataType: 'jsonp',
+		crossDomain: true,
+    	//url: "http://localhost:8090/Mediadores/do/login/ticket?Usuario=RCR12",
+		url: "http://localhost:8090/Mediadores/do/login/ticket",
+		//data: {
+    		//Usuario : 'RCR12'
+		//}
+		data: "Usuario=RCR12"
+    }).done(function(data) {
+    	debugger;
+		console.log("Los datos devueltos son", data);
+    });*/
+	
+	
+	/*var url = "http://localhost:8090/Mediadores/do/login/ticket?Usuario=RCR12";
+	$.getJSON(url, function(json) {
+		console.log("Los datos devueltos son", json);
+	});*/
+
+	
+	var settings = {
+          'cache': false,
+          'dataType': "jsonp",
+          "async": true,
+          "crossDomain": true,
+          "url": "http://localhost:8090/Mediadores/PreLogon?Usuario=RCR12",
+          "method": "GET",
+          "headers": {
+              "accept": "application/json",
+              "Access-Control-Allow-Origin":"*"
+          }
+      }
+
+      $.ajax(settings).done(function (response) {
+          console.log(response);
+
+      });
+}
+        
+    </script>
 </body>
 </html>
